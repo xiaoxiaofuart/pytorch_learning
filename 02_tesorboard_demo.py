@@ -5,13 +5,19 @@
     在终端命令行中输入 tensorboard --logdir=事件相对路径  --port=6006 来启动一个人board，运行成功会显示TensorBoard 2.6.0 at http://localhost:6006/ (Press CTRL+C to quit)在浏览器中打开即可
 """
 
-from  torch.utils.tensorboard  import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
+import  numpy as np
+import  matplotlib.pyplot as plt
 
 # 指定标量日志文件的生成位置
 obj_writer = SummaryWriter("logs")
+
+obj_image = plt.imread("hymenoptera_data/train/ants/0013035.jpg")
+
+obj_writer.add_image("my_image",obj_image,1,dataformats="HWC")
 
 
 # obj_writer.add_image()
 # 添加一个标量，用于绘制标量图
 for i in range(100):
-    obj_writer.add_scalar("y==x",i,i)
+    obj_writer.add_scalar("y==x",2*i,i)
